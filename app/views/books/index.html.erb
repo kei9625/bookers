@@ -8,16 +8,13 @@
    </tr>
   </thead>
   <tbody>
-    <tr><% @books.each do |book| %></tr>
+    <% @books.each do |book| %>
+    <td><%= link_to book.title, "/books/#{book.id}" %></td>
+    <td><%= link_to book.body, "/books/#{book.id}" %></td>
+    <% end %>
   </tbody>
 </table>
 
-  <p>Title</p>
-  <span>
-    <%= link_to book.title, "/books/#{book.id}" %>
-  </span>
-
-  <% end %>
 
 
 <h2>New Book</h2>
