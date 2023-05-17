@@ -1,8 +1,10 @@
 <div>
   <%= flash[:notice] %>
 </div>
-
-<h1><b>Books</b></h1>
+<body>
+  <header>
+    <h1 class = "headline" ><b>Books</b></h1>
+  </header>
 <table>
   <thead>
    <tr>
@@ -27,7 +29,12 @@
 
 <h2><b>New Book</b></h2>
   <% if @book.errors.any? %>
-    <%= @book.errors.count %>errors due to empty field.
+    <% book_error = @book.errors.count %>
+  <% if book_error == 1 %>
+    <%= book_error %> error due to empty field.:
+  <% else %>
+    <%= book_error %> errors due to empty fields.:
+    <% end %>
     <ul>
       <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -37,11 +44,12 @@
 
   <%= form_with model: @book do |f| %>
 
-<h4>Title</h4>
-  <%= f.text_field :title %>
+<label for ="book_title">Title</label>
+  <text_area class = "book_title"><%= f.text_field :title %></text_area>
 
-<h4>Body</h4>
-  <%= f.text_area :body %>
+<label for ="book_body">Body</label>
+  <text_area class = "book_body"><%= f.text_area :body %></text_area>
 
   <p><%= f.submit "Create Book" %></p>
   <% end %>
+</body>

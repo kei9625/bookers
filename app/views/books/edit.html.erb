@@ -1,14 +1,18 @@
 <div>
   <%= flash[:notice] %>
 </div>
-
-<h1><b>Editing Book</b></h1>
-
+<body>
+  <h1 class = "headline" ><b>Editing Book</b></h1>
 <%= form_with model: @book, url:book_path(@book.id), method: :patch do |f| %>
 
 <h4>Title</h4>
   <% if @book.errors.any? %>
-    <%= @book.errors.count %>errors due to empty field.
+    <% book_error = @book.errors.count %>
+  <% if book_error == 1 %>
+    <%= book_error %> error due to empty field.:
+  <% else %>
+    <%= book_error %> errors due to empty fields.:
+    <% end %>
     <ul>
       <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -25,3 +29,4 @@
 <% end %>
 
 <p><%= link_to "Show", book_path(@book.id) %> | <%= link_to "Back", books_path %></p>
+</body>
