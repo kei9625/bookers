@@ -1,7 +1,5 @@
 class BooksController < ApplicationController
   #コントローラの中にあるものを『アクション』、その中のものを『メソッド』
-  def new
-  end
 
   def create
     @book = Book.new(book_params)
